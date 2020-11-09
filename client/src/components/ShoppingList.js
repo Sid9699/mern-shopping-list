@@ -11,9 +11,9 @@ function ShoppingList() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getItems(user.id));
+      dispatch(getItems(user._id));
     }
-  }, [isAuthenticated]);
+  }, [user]);
 
   const items = useSelector((state) => state.items);
 
