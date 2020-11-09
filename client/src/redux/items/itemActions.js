@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEMS, REMOVE_ITEM } from "./itemTypes";
+import { ADD_ITEM, GET_ITEMS, REMOVE_ITEM, CLEAR_ITEMS } from "./itemTypes";
 import axios from "axios";
 import { toggleLoadingState } from "../loading";
 import { returnErrors } from "../error/errorActions";
@@ -7,7 +7,7 @@ import { tokenConfig } from "../auth/authActions";
 export const getItems = (userId) => (dispatch) => {
   dispatch(toggleLoadingState());
   axios
-    .get("https://shopping-list-app-sid9699.herokuapp.com/api/items", {
+    .get("http://localhost:5000/api/items", {
       params: { userId: userId },
     })
     .then((res) => {
@@ -25,7 +25,7 @@ export const getItems = (userId) => (dispatch) => {
 export const addItem = (name, userId) => (dispatch, getState) => {
   axios
     .post(
-      "https://shopping-list-app-sid9699.herokuapp.com/api/items",
+      "http://localhost:5000/api/items",
       { name, userId },
       tokenConfig(getState)
     )
@@ -42,10 +42,7 @@ export const addItem = (name, userId) => (dispatch, getState) => {
 
 export const removeItem = (id) => (dispatch, getState) => {
   axios
-    .delete(
-      `https://shopping-list-app-sid9699.herokuapp.com/api/items/${id}`,
-      tokenConfig(getState)
-    )
+    .delete(`http://localhost:5000/api/items/${id}`, tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: REMOVE_ITEM,
@@ -55,4 +52,10 @@ export const removeItem = (id) => (dispatch, getState) => {
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
+};
+
+export const clearItems = () => {
+  return {
+    type: CLEAR_ITEMS,
+  };
 };

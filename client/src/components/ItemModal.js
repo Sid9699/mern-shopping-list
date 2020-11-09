@@ -26,7 +26,13 @@ function ItemModal() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(addItem(name, user._id));
+    if (user.id) {
+      dispatch(addItem(name, user.id));
+    }
+    if (user._id) {
+      dispatch(addItem(name, user._id));
+    }
+
     toggle();
   };
 

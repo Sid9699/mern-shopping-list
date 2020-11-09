@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEMS, REMOVE_ITEM } from "./itemTypes";
+import { ADD_ITEM, GET_ITEMS, REMOVE_ITEM, CLEAR_ITEMS } from "./itemTypes";
 
 const initialItems = [];
 
@@ -10,6 +10,8 @@ const itemReducer = (state = initialItems, action) => {
       return [...state, action.payload];
     case REMOVE_ITEM:
       return state.filter((item) => item._id !== action.payload);
+    case CLEAR_ITEMS:
+      return [];
     default:
       return state;
   }

@@ -11,7 +11,12 @@ function ShoppingList() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getItems(user._id));
+      if (user.id) {
+        dispatch(getItems(user.id));
+      }
+      if (user._id) {
+        dispatch(getItems(user._id));
+      }
     }
   }, [user]);
 
