@@ -7,7 +7,9 @@ import { tokenConfig } from "../auth/authActions";
 export const getItems = (userId) => (dispatch) => {
   dispatch(toggleLoadingState());
   axios
-    .get("http://localhost:5000/api/items", { params: { userId: userId } })
+    .get("https://shopping-list-app-sid9699.herokuapp.com/api/items", {
+      params: { userId: userId },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -24,7 +26,7 @@ export const getItems = (userId) => (dispatch) => {
 export const addItem = (name, userId) => (dispatch, getState) => {
   axios
     .post(
-      "http://localhost:5000/api/items",
+      "https://shopping-list-app-sid9699.herokuapp.com/api/items",
       { name, userId },
       tokenConfig(getState)
     )
