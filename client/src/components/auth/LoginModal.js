@@ -32,7 +32,6 @@ function LoginModal() {
     }
 
     if (modal) {
-      console.log(isAuthenticated);
       if (isAuthenticated) {
         toggle();
       }

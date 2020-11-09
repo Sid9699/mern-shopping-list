@@ -11,7 +11,6 @@ export const getItems = (userId) => (dispatch) => {
       params: { userId: userId },
     })
     .then((res) => {
-      console.log(res);
       dispatch({
         type: GET_ITEMS,
         payload: res.data,
